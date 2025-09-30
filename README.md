@@ -25,18 +25,18 @@ The goal is to go from fundamentals to advanced backend skills and implement pra
 
 ---
 
-## Folder Structure (Example)
-**`` ` ``
+## 📂 Folder Structure
+```bash
 backend/
-├─ day0/
-│ └─ app.js
-├─ day1/
-│ └─ server.js
-├─ day2/
-│ └─ ...
-├─ node_modules/
-└─ package.json
-** `` ` ``
+├── day0/
+│   └── app.js
+├── day1/
+│   └── server.js
+├── day2/
+│   └── index.js
+├── node_modules/
+├── package.json
+└── README.md
 
 > ✅ Tip: You can install npm packages in the main `backend/` folder and use them in all day folders.
 
