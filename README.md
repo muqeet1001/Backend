@@ -26,7 +26,7 @@ The goal is to go from fundamentals to advanced backend skills and implement pra
 ---
 
 ## Folder Structure (Example)
-"""
+**`` ` ``
 backend/
 ├─ day0/
 │ └─ app.js
@@ -36,7 +36,7 @@ backend/
 │ └─ ...
 ├─ node_modules/
 └─ package.json
-"""
+** `` ` ``
 
 > ✅ Tip: You can install npm packages in the main `backend/` folder and use them in all day folders.
 
