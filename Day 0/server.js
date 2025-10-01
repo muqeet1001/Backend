@@ -1,12 +1,8 @@
-const { log } = require("console");
-const express = require("express");
-const app = express();
-app.get("/home", (req, res) => {
-  res.send("welcome to home page");
-});
-app.get("/muqeet", (req, res) => {
-  res.send("welcome to Muqeet world");
+const express = require("express"); // server is imported
+const app = express(); // server create hogaya
+app.get("/", (req, res) => {
+  res.send("server is started"); //api
 });
 app.listen(3000, () => {
-  console.log("hellow ji");
+  console.log("hellow"); //server start hogaya
 });
