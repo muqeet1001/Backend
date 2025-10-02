@@ -221,6 +221,45 @@ app.get('/', (req, res) => res.send('Hello World'));
 
 ---
 
+## REST API and Best Practices
+
+### 1. Introduction to REST API
+- REST (Representational State Transfer) is a set of best practices for building web APIs.
+- Works on **client-server architecture**: client sends requests, server returns responses.
+- Server and client are **independent**; server provides raw data, client decides how to render it.
+
+### 2. Client-Server Communication
+- Client sends a **request**.
+- Server sends a **response**.
+- Response can be **text, HTML, image, or JSON**, depending on client.
+- For browsers, HTML (server-side rendering) is fine.
+- For other clients (mobile apps, Alexa, React apps), **JSON** is preferred.
+
+### 3. Server-side vs Client-side Rendering
+- **Server-side rendering:** Server generates HTML and sends it to the client. Fast for browsers.
+- **Client-side rendering:** Server sends JSON; client renders data. Slower but cross-platform.
+
+### 4. Respect HTTP Methods
+- Use methods properly:
+  - **GET** → Fetch data
+  - **POST** → Create data
+  - **PATCH/PUT** → Update data
+  - **DELETE** → Remove data
+- Avoid misusing POST for all operations.
+
+### 5. Best Practices
+- Maintain **client-server separation**.
+- Send **raw JSON** for non-browser clients.
+- Follow **HTTP method conventions** for CRUD.
+- Server-side HTML rendering is okay **only if the client is a browser**.
+
+### 6. Conclusion
+- Following REST best practices ensures **clean, maintainable, platform-independent APIs**.
+- Upcoming videos will show **hands-on coding with Express.js** and projects using these standards.
+
+**Key takeaway:** REST APIs should maintain **client-server independence**, send raw JSON when needed, and respect HTTP methods for scalable and efficient APIs.
+
+
 ## 📨 Ways to Send Data in Requests
 
 ### 1. `req.body`
@@ -256,66 +295,3 @@ app.get('/', (req, res) => res.send('Hello World'));
 4. **Processes** the request
 5. **Sends back a response** to client
 6. **Client receives** the response
-
-### 🗓️ Day - 3: REST APIs and HTTP Methods
-
----
-
-## 🌐 What are REST APIs?
-- **REST (Representational State Transfer)** is a **type of API** that follows **specific rules and guidelines** for communication.
-- It uses **HTTP methods** like:
-  - `GET`
-  - `POST`
-  - `PUT`
-  - `DELETE`
-- It defines **fixed standards** for how requests and responses should be structured.
-
----
-
-## 📨 Ways to Send Data in Requests
-
-### 1. `req.body`
-- Hidden in the request payload.
-- Best for **larger**, **sensitive**, or **complex** data (like passwords).
-- Typically used in `POST`, `PUT`, and `PATCH` requests.
-
-### 2. `req.query`
-- Data sent in the URL after `?` as key-value pairs.
-- Ideal for **small**, **optional parameters**.
-- Avoid using it for **sensitive or complex data**.
-- Example:
-  ```
-  GET /search?gender=male&age=24
-  ```
-
-### 3. `req.params`
-- Data sent as part of the API path.
-- Commonly used for identifying **specific resources**.
-- Example: 
-  ```
-  GET /user/ankur_bit_io
-  ```
-- Accessed in code as:
-  ```js
-  req.params.username
-  ```
-
----
-
-## 🧾 REST API Methods
-
-| Method   | Purpose                                      |
-|----------|----------------------------------------------|
-| **GET**     | Retrieve data from the server.               |
-| **POST**    | Send new data to the server (create).        |
-| **PATCH**   | Update existing data on the server.          |
-| **DELETE**  | Remove/delete data from the server.          |
-
----
-
-💡 Example Use Case:  
-A social media app like `x.com` may use:
-- `req.params` to fetch user profiles (`/user/:username`)
-- `req.query` to filter search results (`/search?gender=male`)
-- `req.body` for login forms or post creation
-Displaying D117.md.
