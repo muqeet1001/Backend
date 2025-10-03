@@ -9,8 +9,11 @@ app.post('/notes',(req,res)=>{
         message:"note created succefully"
      })
 })
-
-app.get('/notes',(req,res)=>{
+ app.use((req,res,next)=>{
+    console.log("hellow form middle ware");
+    next();
+ })
+app.get('/notes',(req,res,next)=>{
     res.json(notes);
 })
 

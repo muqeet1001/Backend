@@ -295,3 +295,156 @@ app.get('/', (req, res) => res.send('Hello World'));
 4. **Processes** the request
 5. **Sends back a response** to client
 6. **Client receives** the response
+
+---
+# Express.js Middleware 🚀
+
+## 1. What is Middleware? (Basic Level)
+
+👉 Middleware is just a **function in Express** that runs **between the
+request and the response**.
+
+-   Imagine you enter a **shopping mall**:
+    -   At the entrance, a **security guard** checks your bag.\
+    -   Then you go to a shop, buy something.\
+    -   Before leaving, another guard checks the bill.
+
+Here:\
+- **You** = client request\
+- **Shops** = routes\
+- **Security guards** = middleware (they check things before you reach
+the final shop/route).
+
+![Middleware Example](./middleware.png)
+
+------------------------------------------------------------------------
+
+## 2. First Simple Middleware Example
+
+``` js
+const express = require("express");
+const app = express();
+
+// Custom middleware
+function logger(req, res, next) {
+  console.log("Request received at:", new Date().toISOString());
+  next(); // pass to next step
+}
+
+app.use(logger);
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Home Page 🏠");
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+```
+
+------------------------------------------------------------------------
+
+## 3. Types of Middleware (Intermediate Level)
+
+### (a) Application-Level Middleware
+
+Runs on **every request**.
+
+``` js
+app.use((req, res, next) => {
+  console.log(req.method, req.url);
+  next();
+});
+```
+
+### (b) Route-Level Middleware
+
+Runs only on specific routes.
+
+``` js
+function isLoggedIn(req, res, next) {
+  let loggedIn = false;
+  if (loggedIn) next();
+  else res.send("❌ Please log in first!");
+}
+
+app.get("/dashboard", isLoggedIn, (req, res) => {
+  res.send("Welcome to your Dashboard ✅");
+});
+```
+
+### (c) Built-in Middleware
+
+-   `express.json()` → parses JSON body\
+-   `express.urlencoded()` → parses form data\
+-   `express.static()` → serves static files
+
+``` js
+app.use(express.json()); 
+```
+
+### (d) Error-Handling Middleware
+
+Special middleware with **4 parameters** `(err, req, res, next)`.
+
+``` js
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke! 🚨");
+});
+```
+
+------------------------------------------------------------------------
+
+## 4. Real-Life Advanced Example (Banking App)
+
+1.  Logger → Logs transaction requests\
+2.  Authentication → Checks if user is logged in\
+3.  Validator → Ensures valid amount\
+4.  Route → Processes transaction\
+5.  Error Handler → Handles errors
+
+``` js
+// 1. Logger
+function logger(req, res, next) {
+  console.log("Transaction Request:", req.method, req.url);
+  next();
+}
+
+// 2. Authentication
+function auth(req, res, next) {
+  const loggedIn = true; 
+  if (loggedIn) next();
+  else res.status(401).send("Unauthorized ❌");
+}
+
+// 3. Validator
+function validateAmount(req, res, next) {
+  if (req.body.amount > 0) next();
+  else res.status(400).send("Invalid Amount 🚫");
+}
+
+app.use(express.json());
+app.use(logger);
+
+app.post("/transfer", auth, validateAmount, (req, res) => {
+  res.send(`✅ Transfer of $${req.body.amount} successful!`);
+});
+
+// 4. Error Handler
+app.use((err, req, res, next) => {
+  console.error("Error:", err.message);
+  res.status(500).send("Server Error ⚠️");
+});
+```
+
+------------------------------------------------------------------------
+
+## 5. Summary
+
+-   **Basic**: Middleware = function with `req, res, next`.\
+-   **Intermediate**: Application-level, Route-level, Built-in,
+    Error-handling.\
+-   **Advanced**: Used for security, logging, validation,
+    authentication, error handling, etc.
+
+✅ In short: Middleware is like **checkpoints** between request and
+response.
