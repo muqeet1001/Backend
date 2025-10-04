@@ -1,4 +1,7 @@
 const express = require('express');
+const connnectToDB = require('./src/db/db');
+
+connnectToDB();
 const app = express();
 let notes = [];
 app.use(express.json())
