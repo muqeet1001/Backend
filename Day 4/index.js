@@ -1,26 +1,21 @@
-const express = require("express");
-const connectToDB = require("./src/db/db");
-const noteModel = require("./src/models/note.model");
-connectToDB();
+const express = require('express');
+const connectTodb = require('./src/db/db');
+const noteModel = require('./src/model/note.model')
 const app = express();
 app.use(express.json());
-app.post("/notes", async (req, res) => {
-  const { title, content } = req.body;
-  await noteModel.create({
-    title,
-    content,
-  });
-  res.json({
-    msg: "note is created and stored in db",
-  });
-});
-
-app.get('/notes',async(req,res)=>{
-    const notes =  await noteModel.find();
+connectTodb();
+app.post('/notes',async (req,res)=>{
+    const {title,content} = req.body
+     await noteModel.create({
+        title,content
+    })
+    res.json("note is posted");
+})
+app.get("/notes",(req,res)=>{
     res.json({
-        notes
+        msg:"hi" 
     })
 })
-app.listen(3000, () => {
-  console.log("server is running in port 3000");
-});
+app.listen(3000,()=>{
+    console.log("server is running in port 3000")
+})
