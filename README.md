@@ -555,9 +555,3 @@ User.findByIdAndDelete("id");
 
 ---
 
-## 📘 Final Tips
-- Always validate incoming data against your schema.
-- Structure your folder and codebase from Day 1.
-- Use environment variables for DB URLs and secrets.
-- Modularize your code for maintainability.
-Displaying D21&22.md.
