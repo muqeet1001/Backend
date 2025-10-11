@@ -3,7 +3,7 @@ import logo from "../assets/logo.jpg";
 import LiveMoodDetection from "./LiveMoodDetection";
 import Detect from "./Detect"; // make sure this exists
 import Songs from "./Songs";
-function MoodDetection() {
+function MoodDetection({songsData}) {
   const [showMood, setShowMood] = React.useState(false);
   const videoRef = React.useRef(null);
   const [mood, setMood] = React.useState("");
@@ -49,7 +49,7 @@ function MoodDetection() {
             )}
           </div>
         </div>
-        <Songs/>
+        <Songs songData = {songsData}/>
       </div>
     </div>
   );

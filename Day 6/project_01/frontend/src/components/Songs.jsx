@@ -1,30 +1,12 @@
 import React from 'react'
 import play from '../assets/play-line.svg'
 import pause from '../assets/pause-line.svg'
-function Songs() {
-    const [Song , setSong] = React.useState([
-        {
-            title:"test_title",
-            artist:"test_artist",
-            url:"test_url"
-        },
-         {
-            title:"test_title",
-            artist:"test_artist",
-            url:"test_url"
-        },
-         {
-            title:"test_title",
-            artist:"test_artist",
-            url:"test_url"
-        }
-    ]);
-    
+function Songs({songsData}) { 
   return (
      <div className="songs w-full  mt-10 ">
           <h1 className='text-2xl font-bold'>Recommanded Songs</h1>
           <div className="son flex flex-col gap-4 ">
-            {Song.map((song,index)=>{
+            {songsData.map((song,index)=>{
                 return(
                  <div key={index} className='border rounded bg-amber-50 flex items-center justify-between'>
                   <div className="a">
