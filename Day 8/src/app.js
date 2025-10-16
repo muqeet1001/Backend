@@ -2,7 +2,7 @@ const exprees = require('express');
 const routes = require('./routes/index.routes');
 const app = exprees();
 app.use((req,res,next)=>{
-    console.log(req.originalUrl);
+    console.log("it muqeet");
     next();
 })
 app.use('/',routes);
