@@ -554,4 +554,148 @@ User.findByIdAndDelete("id");
 | Delete    | `deleteOne()`, `findByIdAndDelete()` | Remove a document         |
 
 ---
+# 🌐 HTTP Headers - Complete Summary
+
+## 🧠 What Are HTTP Headers?
+HTTP Headers are **extra information** sent along with HTTP requests and responses.  
+- They describe **metadata** about the data being sent.
+- They control **how data is handled** and provide **additional context**.
+
+**Analogy:**  
+- Sending a letter:  
+  - **Envelope info** = headers (sender, receiver, weight)  
+  - **Letter content** = actual data
+
+---
+
+## 💡 Why We Use Headers
+
+| Purpose | Description | Example |
+|----------|-------------|---------|
+| Content info | Tells type of data sent/received | `Content-Type: application/json` |
+| Authentication | Send tokens, API keys, session IDs | `Authorization: Bearer <token>` |
+| Caching | Manage browser caching | `Cache-Control: no-cache` |
+| Language/Locale | Client language preference | `Accept-Language: en-US` |
+| Security | Prevent unsafe behavior or attacks | `X-Content-Type-Options: nosniff` |
+| Custom info | App-specific info like version | `X-App-Version: 1.0.0` |
+| Cookies / Sessions | Maintain login session | `Set-Cookie: sessionid=abc123` |
+
+---
+
+## 🧩 Types of Headers
+
+| Type | Sent By | Example |
+|------|---------|---------|
+| **Request Headers** | Client → Server | `Content-Type`, `Authorization`, `User-Agent` |
+| **Response Headers** | Server → Client | `Content-Type`, `Cache-Control`, `X-Powered-By` |
+
+---
+
+## ⚡ Examples
+
+### Browser Request (YouTube)
+```http
+GET / HTTP/1.1
+Host: youtube.com
+Accept: text/html
+Accept-Language: en-US
+User-Agent: Chrome
+
+# HTTP Headers - Summary & Best Practices
+
+## Server Response Example
+```
+HTTP/1.1 200 OK
+Content-Type: text/html
+Cache-Control: private
+X-Powered-By: Express
+```
+
+## Express.js Example
+```js
+app.get('/users', (req, res) => {
+  res.setHeader("X-My-Name", "Piyush Garg"); // custom header
+  res.json({ msg: "Hello Users" });
+});
+```
+
+- **Standard Header** → `Content-Type: application/json`
+- **Custom Header** → `X-My-Name: Piyush Garg`
+
+## Custom Headers
+- Use `X-` prefix to indicate a custom header.
+- Examples: `X-Auth-Token`, `X-Client-Id`, `X-My-Name`
+- Helps clients understand this is developer-defined info.
+- Avoid putting sensitive info in headers without encryption.
+
+## Authentication via Headers
+- Common usage: Bearer Token
+```
+Authorization: Bearer <token>
+```
+- Tells the server which user is making the request.
+- Works for APIs and session management.
+
+## Best Practices
+1. Use standard headers whenever possible (`Content-Type`, `Authorization`).
+2. Prefix custom headers with `X-`.
+3. Keep sensitive info secure (never plain passwords).
+4. Understand what each header does before using it.
+5. Headers are case-insensitive, but use standard naming style.
+
+## Summary Table
+| Concept         | Meaning                                         |
+|-----------------|-------------------------------------------------|
+| HTTP Headers    | Extra metadata for requests/responses          |
+| Request Headers | Sent from client → server                      |
+| Response Headers| Sent from server → client                      |
+| Custom Headers  | Start with X-, developer-defined               |
+| Purpose         | Describe content, authentication, caching, security |
+| Example         | Content-Type, Authorization, X-App-Version    |
+
+## Key Points
+- Headers carry **information about data**, not the actual data.
+- Every request and response can have headers.
+- They make client-server communication **structured and secure**.
+- Headers allow adding **custom info** like app version or user ID.
+- Tools like **Postman** automatically generate headers for requests.
+
+## In Short
+**HTTP Headers = Extra info + rules that help client & server communicate correctly**
+-----
+# HTTP Status Codes – Summary
+
+ 
+
+
+## 🌐 What are HTTP Status Codes?
+
+- Standardized codes returned by a server in response to a client's request.
+- Help developers understand the outcome of HTTP requests.
+
+---
+
+## 📊 Categories of Status Codes
+
+| Category | Code Range | Description |
+|---------|------------|-------------|
+| Informational | 1xx | Request received, continuing process |
+| Success | 2xx | Request successfully received, understood, and accepted (e.g., 200 OK) |
+| Redirection | 3xx | Further action needs to be taken to complete the request (e.g., 301 Moved Permanently) |
+| Client Error | 4xx | The request contains bad syntax or cannot be fulfilled (e.g., 404 Not Found) |
+| Server Error | 5xx | The server failed to fulfill a valid request (e.g., 500 Internal Server Error) |
+
+---
+
+## 🛠️ Use in APIs and Debugging
+
+- Crucial for debugging and handling errors in REST APIs.
+- Guide developers in implementing proper error handling and response logic.
+
+---
+
+## 🎯 Purpose of the Video
+
+This video is part of a broader Node.js and web development series aimed at helping viewers build a strong backend foundation.
+
 
